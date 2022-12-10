@@ -10,7 +10,20 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
 
+/**
+ * Setup the mongodb connection 
+ */
+// console.log(process.env.DB_URL);
+mongoose.set('strictQuery', true);
+mongoose.connect(process.env.DB_URL, (err)=>{
 
+    if( err ){
+        console.log(err);
+        throw err;
+    }
+    
+    console.log("MongoDB connected ");
+});
 
 
 app.listen(process.env.PORT, () => {
