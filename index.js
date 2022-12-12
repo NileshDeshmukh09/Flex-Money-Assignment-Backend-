@@ -26,8 +26,10 @@ mongoose.connect(process.env.DB_URL, (err)=>{
 });
 
 const userRoutes = require('./routes/user.routes');
+const homeRoute = require('./routes/home.routes');
 
 app.use( '/flexmoney/api/v1' , userRoutes );
+app.use(  homeRoute );
 
 
 app.listen(process.env.PORT, () => {

@@ -25,7 +25,9 @@ async function registerUser( req , res ){
         console.log( user );
         
         const batch = await Batch.create({ time : user.batch } );
-        batch.participants.push( user.email );
+        batch.participants.push( user._id );
+
+        await batch.save();
         console.log( batch );
         
         const payment = await Payment.create({ userID : user._id , amount : user.payment })
@@ -36,6 +38,7 @@ async function registerUser( req , res ){
          *  response
          */
          const ResponseOfNewUser = {
+            _id : user._id,
             name: user.name,
             email: user.email,
             age: user.age,
