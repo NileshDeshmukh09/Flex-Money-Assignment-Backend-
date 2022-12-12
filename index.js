@@ -25,6 +25,10 @@ mongoose.connect(process.env.DB_URL, (err)=>{
     console.log("MongoDB connected ");
 });
 
+const userRoutes = require('./routes/user.routes');
+
+app.use( '/flexmoney/api/v1' , userRoutes );
+
 
 app.listen(process.env.PORT, () => {
     console.log(`Backend-Server has started on the port http://localhost:${process.env.PORT}` );
